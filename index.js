@@ -47,9 +47,7 @@ app.use('/v2/', proxy("https://in.bookmyshow.com", {
             "user-agent": "Mozilla/5.0 (X11; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/117.0",
             "referer": "https://in.bookmyshow.com",
             "Connection": "keep-alive",
-            "Content-Type": "text/xml;charset=UTF-8",
-            "Accept": "*/*",
-            // ...headers
+            ...headers
         };
         return customHeaders;
     },

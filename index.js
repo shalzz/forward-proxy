@@ -36,7 +36,11 @@ app.get('/v1/*', async (req, res) => {
     }
 })
 
-app.use('/v2', proxy("https://in.bookmyshow.com", {
+app.use('/v2/', proxy("https://in.bookmyshow.com", {
+    proxyReqPathResolver: function (req) {
+      var path = req.url;
+      console.log(path);
+    },
     userResHeaderDecorator(headers, userReq, userRes, proxyReq, proxyRes) {
         const customHeaders = {
             "origin": "https://in.bookmyshow.com",

@@ -9,10 +9,10 @@ app.get('/', (req, res) => {
   res.send('Hello World!')
 })
 
-app.get('/v1/*', async (req, res) => {
+app.get('/proxy/v1/*', async (req, res) => {
     let url = req.url;
     console.log(url);
-    const prefix = '/v1/'
+    const prefix = '/proxy/v1/'
 
     const remainingUrl = url.replace(new RegExp('^' + prefix), '')
     let targetUrl = decodeURIComponent(remainingUrl)
@@ -36,7 +36,7 @@ app.get('/v1/*', async (req, res) => {
     }
 })
 
-app.use('/v2/', proxy("https://in.bookmyshow.com", {
+app.use('/proxy/v2/', proxy("https://in.bookmyshow.com", {
     proxyReqPathResolver: function (req) {
       var path = req.url;
       console.log(path);
